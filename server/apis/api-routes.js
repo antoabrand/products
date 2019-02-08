@@ -4,8 +4,16 @@ let router = require('express').Router();
 router.get('/', function (req, res) {
     res.json({
        status: 'API Its Working',
-       message: 'Welcome to RESTHub crafted with love!',
+       message: 'Welcome to HEB!',
     });
 });
+
+// Import product controller
+var productController = require('../controllers/productController');
+
+// Contact routes
+router.route('/products')
+    .get(productController.index);
+
 // Export API routes
 module.exports = router;
