@@ -1,3 +1,6 @@
+// got to give props to David Inyang-Etoh for his amazing mongo node express rest tutorial 
+// https://medium.com/@dinyangetoh/how-to-build-simple-restful-api-with-nodejs-expressjs-and-mongodb-99348012925d
+
 // Imports
 let express = require("express");
 let bodyParser = require("body-parser");
