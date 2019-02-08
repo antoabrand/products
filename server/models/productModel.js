@@ -1,5 +1,5 @@
 //Imports
-var mongoose = require('mongoose');
+var mongoose = require("mongoose");
 
 // Setup schema
 var productSchema = mongoose.Schema({
@@ -12,14 +12,14 @@ var productSchema = mongoose.Schema({
     ShelfLife: String,
     Department: String,
     Price: String,
-    Unit: String, 
-    xFor: String, 
+    Unit: String,
+    xFor: String,
     Cost: String
 });
 
 // Export Product model
-var Products = module.exports = mongoose.model('product', productSchema);
+var Products = (module.exports = mongoose.model("product", productSchema));
 
-module.exports.get = function (callback, limit) {
+module.exports.get = function(callback, limit) {
     Products.find(callback).limit(limit);
-}
+};

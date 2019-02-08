@@ -1,19 +1,18 @@
 // Initialize express router
-let router = require('express').Router();
+let router = require("express").Router();
 // Set default API response
-router.get('/', function (req, res) {
+router.get("/", function(req, res) {
     res.json({
-       status: 'API Its Working',
-       message: 'Welcome to HEB!',
+        status: "API Its Working",
+        message: "Welcome to HEB!"
     });
 });
 
 // Import product controller
-var productController = require('../controllers/productController');
+var productController = require("../controllers/productController");
 
 // Contact routes
-router.route('/products')
-    .get(productController.index);
+router.route("/products").get(productController.index);
 
 // Export API routes
 module.exports = router;

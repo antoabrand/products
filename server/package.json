@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "pretty": "prettier --write --tab-width 4 \"src/**/*.tj\"",
+    "pretty": "prettier --write --tab-width 4 \"**/*.js\"",
     "precommit": "lint-staged"
   },
   "lint-staged": {
@@ -20,5 +20,8 @@
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
     "mongoose": "^5.4.10"
+  },
+  "devDependencies": {
+    "prettier": "1.16.4"
   }
 }

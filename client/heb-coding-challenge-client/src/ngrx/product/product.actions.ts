@@ -1,4 +1,4 @@
-//crud actions here 
+//crud actions here
 
 //create
 //read
