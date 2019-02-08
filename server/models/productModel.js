@@ -1,5 +1,6 @@
-// contactModel.js
+//Imports
 var mongoose = require('mongoose');
+
 // Setup schema
 var productSchema = mongoose.Schema({
     ID: {
@@ -15,8 +16,10 @@ var productSchema = mongoose.Schema({
     xFor: String, 
     Cost: String
 });
+
 // Export Product model
 var Products = module.exports = mongoose.model('product', productSchema);
+
 module.exports.get = function (callback, limit) {
     Products.find(callback).limit(limit);
 }

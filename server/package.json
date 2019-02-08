@@ -4,7 +4,15 @@
   "description": "heb challenge",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "pretty": "prettier --write --tab-width 4 \"src/**/*.tj\"",
+    "precommit": "lint-staged"
+  },
+  "lint-staged": {
+    "*.ts": [
+      "npm run pretty",
+      "git add"
+    ]
   },
   "author": "Tony Andrade",
   "license": "ISC",
