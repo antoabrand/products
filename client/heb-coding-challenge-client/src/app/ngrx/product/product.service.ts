@@ -9,6 +9,7 @@ export class ProductService {
     constructor(private http: HttpClient, private store: Store<IAppState>) {}
 
     private localApiURL = 'http://localhost:8080';
+
     public getProducts() {
         return this.http.get<Product[]>(`${this.localApiURL}/api/products`);
     }
