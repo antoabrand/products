@@ -21,7 +21,7 @@ export class ProductEffects {
         .ofType<productActions.GetProductsAction>(productActions.GET_PRODUCTS)
         .pipe(
             switchMap(() => this.productService.getProducts()),
-            map(attributes => new productActions.GetProductsSuccessAction(attributes)),
+            map(products => new productActions.GetProductsSuccessAction(products)),
             catchError(err => {
                 this.store.dispatch(new productActions.GetProductsFailAction(err));
                 return empty();

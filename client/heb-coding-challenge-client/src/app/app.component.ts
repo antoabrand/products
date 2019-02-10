@@ -21,6 +21,4 @@ products$ = this.store.select(this.products);
     ngOnInit(): void {
         this.store.dispatch(new productActions.GetProductsAction());
     }
-
-
 }

@@ -1,4 +1,6 @@
 <app-header></app-header>
-<div *ngFor="let product of (products$ | async | keyvalue ) ">{{product.value}}</div>
+<div *ngFor="let product of (products$ | async | keyvalue ) ">
+  <div *ngFor="let p of product.value"> {{p.ID}}{{p.Description}}{{p.ShelfLife}}</div>
+</div>
 
 <app-footer></app-footer>
