@@ -1,7 +1,9 @@
 import { Component } from '@angular/core';
-import { IProductState } from './ngrx/product/product.state';
+import { IProductState} from './ngrx/product/product.state';
 import * as productActions from './ngrx/product/product.actions';
-import { Store } from '@ngrx/store';
+import { Store, createSelector, createFeatureSelector} from '@ngrx/store';
+
+
 @Component({
     selector: 'app-root',
     templateUrl: './app.component.html',
@@ -9,12 +11,16 @@ import { Store } from '@ngrx/store';
 })
 export class AppComponent {
     constructor(private store: Store<IProductState>){}
-    title = 'heb-coding-challenge-client';
+
+productState = createFeatureSelector<IProductState>('productState');
+
+products = createSelector(this.productState, (state:IProductState) => state.data[0]);
+
+products$ = this.store.select(this.products);
 
     ngOnInit(): void {
         this.store.dispatch(new productActions.GetProductsAction());
     }
+
+
 }
-
-
-
