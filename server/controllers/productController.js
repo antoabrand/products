@@ -2,7 +2,7 @@
 Product = require("../models/productModel");
 
 // Get all products
-exports.index = function(req, res) {
+exports.getAllProducts = function(req, res) {
     Product.get(function(err, products) {
         if (err) {
             res.json({

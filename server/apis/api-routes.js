@@ -12,8 +12,8 @@ router.get("/", function(req, res) {
 // Import product controller
 var productController = require("../controllers/productController");
 
-// API routes
-router.route("/products").get(productController.index);
+// API route /products gets routed to the productController func 
+router.route("/products").get(productController.getAllProducts);
 
 // Export API routes
 module.exports = router;

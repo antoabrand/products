@@ -13,13 +13,4 @@ table {
   overflow: auto;
 }
 
-.product-form {
-  min-width: 150px;
-  max-width: 500px;
-  width: 100%;
-}
-
-.product-input-full-width {
-  width: 100%;
-}
 

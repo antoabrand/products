@@ -26,6 +26,8 @@ let apiRoutes = require("./apis/api-routes");
 //         extended: true
 //     })
 // );
+
+// for if i want to submit a request body - but for this use case I don't have to
 // app.use(bodyParser.json());
 
 //connection string for just in case 
@@ -36,9 +38,7 @@ mongoose.connect(`mongodb://${HOST_URL}/${DB_NAME}`);
 
 var db = mongoose.connection;
 
-//default route
-app.get("/", (req, res) => res.send("Hello HEB Challenge"));
-// Use Api routes in the App
+// Use Api routes in the App - default route with be prefixed with /api
 app.use("/api", apiRoutes);
 
 // Launch app to listen to specified port
