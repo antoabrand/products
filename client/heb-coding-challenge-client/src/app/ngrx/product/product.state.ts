@@ -1,4 +1,4 @@
-import { Product } from '../../../Types/product-type';
+import { Product } from "src/Types/product-type";
 
 export interface IProductState {
     loaded: boolean;

@@ -1,35 +1,51 @@
 <app-header></app-header>
 
+<input placeholder="Search" (keyup)="search($event.target.value)" />
 
-  <input placeholder="Search" (keyup)="search($event.target.value)">
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Descritpion</th>
+    <th>Last Sold</th>
+    <th>Shelf Life</th>
+    <th>Price</th>
+    <th>Unit</th>
+    <th>xFor</th>
+    <th>Cost</th>
+  </tr>
+  <div *ngIf="hasSearched">
+    <div *ngFor="let product of (dataSource | keyvalue)">
+      <div *ngFor="let p of product.value">
+        <tr>
+          <td>{{ p.ID }}</td>
+          <td>{{ p.Description }}</td>
+          <td>{{ p.lastSold }}</td>
+          <td>{{ p.ShelfLife }}</td>
+          <td>{{ p.Price }}</td>
+          <td>{{ p.Unit }}</td>
+          <td>{{ p.xFor }}</td>
+          <td>{{ p.Cost }}</td>
+        </tr>
+      </div>
+    </div>
+  </div>
+<!-- 
+  <div *ngIf="!hasSearched">
+    <div *ngFor="let product of (filteredData | keyvalue)" #searched>
+      <div *ngFor="let p of product.value">
+        <tr>
+          <td>{{ p.ID }}</td>
+          <td>{{ p.Description }}</td>
+          <td>{{ p.lastSold }}</td>
+          <td>{{ p.ShelfLife }}</td>
+          <td>{{ p.Price }}</td>
+          <td>{{ p.Unit }}</td>
+          <td>{{ p.xFor }}</td>
+          <td>{{ p.Cost }}</td>
+        </tr>
+      </div>
+    </div>
+  </div> -->
+</table>
 
-
-  <table>
-    <tr>
-      <th>ID</th>
-      <th>Descritpion</th>
-      <th>Last Sold</th>
-      <th>Shelf Life</th>
-      <th>Price</th>
-      <th>Unit</th>
-      <th>xFor</th>
-      <th>Cost</th>
-    </tr>
-      <div *ngFor="let product of (dataSource | keyvalue)">
-          <div *ngFor="let p of product.value">
-            <tr>
-              <td>{{p.ID}}</td>
-              <td>{{p.Description}}</td>
-              <td>{{p.lastSold}}</td>
-              <td>{{p.ShelfLife}}</td>
-              <td>{{p.Price}}</td>
-              <td>{{p.Unit}}</td>
-              <td>{{p.xFor}}</td>
-              <td>{{p.Cost}}</td>
-            </tr>
-          </div>
-        </div>
-  </table>
-
-  <app-footer></app-footer>
-
+<app-footer></app-footer>
