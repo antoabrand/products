@@ -1,5 +1,4 @@
 export class Product {
-    data: any[];
     ID: string;
     Description: string;
     lastSold: string;
