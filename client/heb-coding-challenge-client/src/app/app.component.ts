@@ -4,6 +4,7 @@ import * as productActions from './ngrx/product/product.actions';
 import { Store, createSelector, createFeatureSelector } from '@ngrx/store';
 import { filter, tap, map } from 'rxjs/operators';
 import { MatPaginator, MatTableDataSource, MatSort } from '@angular/material';
+import { FormControl, Validators } from '@angular/forms';
 
 @Component({
     selector: 'app-root',
@@ -12,9 +13,6 @@ import { MatPaginator, MatTableDataSource, MatSort } from '@angular/material';
 })
 export class AppComponent {
     constructor(private store: Store<IProductState>) {}
-
-    @ViewChild(MatPaginator) paginator: MatPaginator;
-    @ViewChild(MatSort) sort: MatSort;
 
     public displayedColumns: string[] = [
         'ID',
@@ -33,6 +31,8 @@ export class AppComponent {
         (state: IProductState) => state.data[0]
     );
 
+    searchForm = new FormControl('', [Validators.maxLength(50)]);
+
     //datasource
     public data = this.store
         .select(this.productsData)
@@ -44,12 +44,8 @@ export class AppComponent {
         setTimeout(() => (this.matDataSource = new MatTableDataSource(this.data.data)), 500);
     }
 
-    ngAfterViewInit() {
-        this.matDataSource.paginator = this.paginator;
-        this.matDataSource.sort = this.sort;
-    }
-
     search(value): any {
-        this.matDataSource.filter = value.trim().toLowerCase();
+        if(this.searchForm.dirty && this.searchForm.valid)
+            this.matDataSource.filter = value.trim().toLowerCase();
     }
 }

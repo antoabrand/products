@@ -15,6 +15,7 @@ import { ProductEffects } from './ngrx/product/product.effects';
 import { stateSetter } from './ngrx/meta-reducers/set-intial-state-reducer';
 import { environment } from 'src/environments/environment';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
     declarations: [AppComponent, HeaderComponent, FooterComponent],
@@ -25,7 +26,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
         EffectsModule.forRoot([AppEffects, ProductEffects]),
         !environment.production ? StoreDevtoolsModule.instrument() : [],
         BrowserAnimationsModule,
-        MaterialModule
+        MaterialModule,
+        ReactiveFormsModule,
     ],
     providers: [],
     bootstrap: [AppComponent]

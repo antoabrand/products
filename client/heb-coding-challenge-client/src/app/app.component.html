@@ -1,14 +1,14 @@
 <div class="margins">
   <app-header></app-header>
 
-  <form class="product-form">
-    <mat-form-field class="product-input-width">
-      <input matInput placeholder="Filter ..." (keyup)="search($event.target.value)" />
+  
+    <mat-form-field >
+      <input [formControl]="searchForm" matInput placeholder="Filter ..." (keyup)="search($event.target.value)" />
     </mat-form-field>
-  </form>
+ 
 
   <div class="product-container">
-    <table mat-table [dataSource]="matDataSource" class="mat-elevation-z8">
+    <table mat-table [dataSource]="matDataSource"  matSort class="mat-elevation-z8">
       <!--- Note that these columns can be defined in any order.
         The actual rendered columns are set as a property on the row definition" -->
 
