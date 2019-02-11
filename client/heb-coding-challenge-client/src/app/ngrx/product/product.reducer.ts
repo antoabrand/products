@@ -13,7 +13,7 @@ export function ProductReducer(
                 ...state,
                 loading: false,
                 loaded: true,
-                data: [action.payload]
+                data: [action.payload.data]
             };
         default:
             return { ...state };

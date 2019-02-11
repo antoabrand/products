@@ -5,6 +5,7 @@ import * as productActions from './ngrx/product/product.actions';
 import { Store, createSelector, createFeatureSelector} from '@ngrx/store';
 import { MatTableDataSource } from '@angular/material';
 import { take, filter, map } from 'rxjs/operators';
+import { Observable } from 'rxjs/internal/Observable';
 
 
 @Component({
@@ -15,10 +16,10 @@ import { take, filter, map } from 'rxjs/operators';
 export class AppComponent {
     constructor(private store: Store<IProductState>){}
 
-public someSthi;
+public dataSource;;
 private productState = createFeatureSelector<IProductState>('productState');
-private products = createSelector(this.productState, (state:IProductState) => state.data[0]);
-public products$ = this.store.select(this.products).subscribe(response => this.someSthi = response);
+private productsData = createSelector(this.productState, (state:IProductState) => state.data[0]);
+public products$ = this.store.select(this.productsData).subscribe(response => this.dataSource = response.data);
 
     ngOnInit(): void {
         this.store.dispatch(new productActions.GetProductsAction());
@@ -26,8 +27,6 @@ public products$ = this.store.select(this.products).subscribe(response => this.s
     }
 
     search(value) : any {
-      console.log(this.someSthi.data);
+
     }
 }
-
-

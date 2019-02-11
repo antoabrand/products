@@ -15,7 +15,7 @@
       <th>xFor</th>
       <th>Cost</th>
     </tr>
-      <div *ngFor="let product of (products$ | async | keyvalue)">
+      <div *ngFor="let product of (dataSource | keyvalue)">
           <div *ngFor="let p of product.value">
             <tr>
               <td>{{p.ID}}</td>
