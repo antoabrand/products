@@ -4,7 +4,7 @@ import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { HttpClientModule } from '@angular/common/http';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import {MaterialModule} from './material.module';
+import { MaterialModule } from './material.module';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
