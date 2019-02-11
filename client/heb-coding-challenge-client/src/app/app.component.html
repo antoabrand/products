@@ -1,33 +1,70 @@
-<app-header></app-header>
+<div class="margins">
+  <app-header></app-header>
 
-<input placeholder="Search" (keyup)="search($event.target.value)" />
+  <mat-form-field>
+    <input matInput placeholder="Search..." (keyup)="search($event.target.value)" />
+  </mat-form-field>
 
-<table>
-  <tr>
-    <th>ID</th>
-    <th>Descritpion</th>
-    <th>Last Sold</th>
-    <th>Shelf Life</th>
-    <th>Price</th>
-    <th>Unit</th>
-    <th>xFor</th>
-    <th>Cost</th>
-  </tr>
-    <div *ngFor="let product of (products$ | async | keyvalue)">
-      <div *ngFor="let p of product.value">
-        <tr>
-          <td>{{ p.ID }}</td>
-          <td>{{ p.Description }}</td>
-          <td>{{ p.lastSold }}</td>
-          <td>{{ p.ShelfLife }}</td>
-          <td>{{ p.Price }}</td>
-          <td>{{ p.Unit }}</td>
-          <td>{{ p.xFor }}</td>
-          <td>{{ p.Cost }}</td>
-        </tr>
-      </div>
+  <div>
+    <table mat-table [dataSource]="dataSource.data" class="mat-elevation-z8">
+      <!--- Note that these columns can be defined in any order.
+        The actual rendered columns are set as a property on the row definition" -->
+
+      <!-- Position Column -->
+      <ng-container matColumnDef="ID">
+        <th mat-header-cell *matHeaderCellDef>ID</th>
+        <td mat-cell *matCellDef="let product">{{ product.ID }}</td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="Description">
+        <th mat-header-cell *matHeaderCellDef>Description</th>
+        <td mat-cell *matCellDef="let product">{{ product.Description }}</td>
+      </ng-container>
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="lastSold">
+        <th mat-header-cell *matHeaderCellDef>Last Sold</th>
+        <td mat-cell *matCellDef="let product">{{ product.lastSold }}</td>
+      </ng-container>
+
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="ShelfLife">
+        <th mat-header-cell *matHeaderCellDef>Shelf Life</th>
+        <td mat-cell *matCellDef="let product">{{ product.ShelfLife }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="Department">
+        <th mat-header-cell *matHeaderCellDef>Department</th>
+        <td mat-cell *matCellDef="let product">{{ product.Department }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="Price">
+        <th mat-header-cell *matHeaderCellDef>Price</th>
+        <td mat-cell *matCellDef="let product">{{ product.Price }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="Unit">
+        <th mat-header-cell *matHeaderCellDef>Unit</th>
+        <td mat-cell *matCellDef="let product">{{ product.Unit }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="xFor">
+        <th mat-header-cell *matHeaderCellDef>xFor</th>
+        <td mat-cell *matCellDef="let product">{{ product.xFor }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="Cost">
+        <th mat-header-cell *matHeaderCellDef>Cost</th>
+        <td mat-cell *matCellDef="let product">{{ product.Cost }}</td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
   </div>
 
-</table>
-
-<app-footer></app-footer>
+  <app-footer></app-footer>
+</div>

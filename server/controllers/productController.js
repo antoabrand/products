@@ -11,8 +11,6 @@ exports.index = function(req, res) {
             });
         }
         res.json({
-            status: "success",
-            message: "Products retrieved successfully",
             data: products
         });
     });
