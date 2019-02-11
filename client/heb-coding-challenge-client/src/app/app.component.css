@@ -7,3 +7,19 @@ table {
   margin-right: 150px;
   margin-left: 80px;
 }
+
+.product-container {
+  height: 400px;
+  overflow: auto;
+}
+
+.product-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.product-input-full-width {
+  width: 100%;
+}
+
