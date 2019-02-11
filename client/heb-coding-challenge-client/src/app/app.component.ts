@@ -14,60 +14,22 @@ export class AppComponent {
     constructor(private store: Store<IProductState>) {}
 
     @ViewChild(MatPaginator) paginator: MatPaginator;
-    displayedColumns: string[] = ['ID', 'Description', 'lastSold', 'ShelfLife', 'Department', 'Price', 'Unit', 'xFor', 'Cost'];
-    
-    private productState = createFeatureSelector<IProductState>('productState');
-    private productsData = createSelector(
+    public displayedColumns: string[] = ['ID', 'Description', 'lastSold', 'ShelfLife', 'Department', 'Price', 'Unit', 'xFor', 'Cost'];
+    public productState = createFeatureSelector<IProductState>('productState');
+    public productsData = createSelector(
         this.productState,
         (state: IProductState) => state.data[0]
     );
 
-    
-    private dataSource = this.store.select(this.productsData).subscribe(response => this.dataSource = response);
-
-    public matDataSourcePag = new MatTableDataSource<Products>(this.dataSource);
+    //datasource
+    public data = this.store.select(this.productsData).subscribe(response => this.data = response);
+    public matDataSource; 
     ngOnInit(): void {
         this.store.dispatch(new productActions.GetProductsAction());
-        this.dataSource.paginator = this.paginator;
-       
+       setTimeout(() => this.matDataSource = new MatTableDataSource(this.data.data), 500)
+      }
+ 
+    search(value): any {
+        this.matDataSource.filter = value.trim().toLowerCase();
     }
-    public search(value): any {
-
-        let filteredData = [];
-        console.log('This is before we do the stuff');
-        console.log(this.dataSource.data);
-
-        for(let index = 0; index<this.dataSource.data.length;index++){
-          for(let key in this.dataSource.data[index]){
-              if(value === ""){
-                  filteredData = [...this.dataSource.data];
-                  break;
-              }
-              if(this.dataSource.data[index][key].indexOf(value) > -1)
-                filteredData = [...filteredData, this.dataSource.data[index]]
-
-          }
-        }
-
-        // Object.keys(this.dataSource.data)
-        //   .forEach(key => { filteredData = [...filteredData, Object.values(this.dataSource.data[key])
-        //   .filter((x: any) => x.indexOf(value) > -1)] 
-        // })
-
-        console.log('After filtering: ');
-        console.log(filteredData);
-    }
-
-   
 }
-export interface Products {
-    ID: string;
-    Description: number;
-    lastSold: number;
-    ShelfLife: string;
-    Department: string;
-    Price: string;
-    Unit: string;
-    xFor: string;
-    Cost: string;
-  }
