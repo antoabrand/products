@@ -1,4 +1,4 @@
-# products
+# Products
 
 ## run mongo daemon - server 
 mongod
