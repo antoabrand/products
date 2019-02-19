@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { IProductState } from './ngrx/product/product.state';
 import * as productActions from './ngrx/product/product.actions';
 import { Store, createSelector, createFeatureSelector } from '@ngrx/store';
-import { MatTableDataSource } from '@angular/material';
+import { MatTableDataSource, MatPaginator } from '@angular/material';
 import { FormControl, Validators } from '@angular/forms';
 
 @Component({
@@ -12,6 +12,8 @@ import { FormControl, Validators } from '@angular/forms';
 })
 export class AppComponent {
     constructor(private store: Store<IProductState>) {}
+
+    @ViewChild(MatPaginator) paginator: MatPaginator;
 
     public displayedColumns: string[] = [
         'ID',
@@ -41,9 +43,11 @@ export class AppComponent {
 
     ngOnInit(): void {
         this.store.dispatch(new productActions.GetProductsAction());
+       
         //doing this becuase otherwise the intitilziation happens before the stream can finish - causing the mat table to render against an undefined datasource
         //a hacky way to ensure my data is in place before the html tries to render 
         setTimeout(() => (this.matDataSource = new MatTableDataSource(this.data.data)), 5);
+        setTimeout(() => (this.matDataSource.paginator = this.paginator), 5); 
     }
 
     search(value): any {
