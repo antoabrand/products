@@ -1,0 +1,13 @@
+.mat-toolbar {
+    border-bottom: double black;
+    font-size: 30px !important; 
+    background-color: #FFFAF0;  
+}
+
+.mat-toolbar-single-row{
+   flex-direction: column;
+   padding-top: 20px;
+   padding-right: 100px;
+   padding-bottom: 50px;
+  
+}
