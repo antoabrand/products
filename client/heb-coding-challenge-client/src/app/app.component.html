@@ -52,7 +52,7 @@
 
         <ng-container matColumnDef="Unit">
           <th mat-header-cell *matHeaderCellDef>Unit</th>
-          <td mat-cell *matCellDef="let product">{{ product.Unit | lowercase }}</td>
+          <td mat-cell *matCellDef="let product">{{ product.Unit | titlecase }}</td>
         </ng-container>
 
         <ng-container matColumnDef="xFor">
