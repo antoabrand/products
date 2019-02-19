@@ -21,4 +21,8 @@ table {
   overflow:hidden;
 }
 
+.material-icons{
+  font-size: 14px;
+  padding-right: 10px;
+}
 
