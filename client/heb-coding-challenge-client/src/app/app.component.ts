@@ -2,7 +2,7 @@ import { Component, ViewChild } from '@angular/core';
 import { IProductState } from './ngrx/product/product.state';
 import * as productActions from './ngrx/product/product.actions';
 import { Store, createSelector, createFeatureSelector } from '@ngrx/store';
-import { MatTableDataSource, MatPaginator } from '@angular/material';
+import { MatTableDataSource, MatPaginator, MatSort } from '@angular/material';
 import { FormControl, Validators } from '@angular/forms';
 
 @Component({
@@ -14,17 +14,19 @@ export class AppComponent {
     constructor(private store: Store<IProductState>) {}
 
     @ViewChild(MatPaginator) paginator: MatPaginator;
+    @ViewChild(MatSort) sort: MatSort;
 
     public displayedColumns: string[] = [
         'ID',
-        'Description',
-        'lastSold',
-        'ShelfLife',
-        'Department',
         'Price',
+        'Cost',
+        'Description',
+        'Department',
+        'ShelfLife',
         'Unit',
         'xFor',
-        'Cost'
+        'lastSold',
+        
     ];
     public productState = createFeatureSelector<IProductState>('productState');
     public productsData = createSelector(
@@ -48,6 +50,7 @@ export class AppComponent {
         //a hacky way to ensure my data is in place before the html tries to render 
         setTimeout(() => (this.matDataSource = new MatTableDataSource(this.data.data)), 5);
         setTimeout(() => (this.matDataSource.paginator = this.paginator), 5); 
+        setTimeout(() => (this.matDataSource.sort = this.sort), 5); 
     }
 
     search(value): any {
